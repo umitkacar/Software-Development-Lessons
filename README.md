@@ -6,3 +6,6 @@ https://www.youtube.com/user/schafer5/playlists
 
 #### Python Engineer (Pytorch)
 https://www.youtube.com/channel/UCbXgNpp0jedKWcQiULLbDTA/playlists
+
+#### deeplizard (Pytorch)
+https://www.youtube.com/channel/UC4UJ26WkceqONNF5S26OiVw/playlists
