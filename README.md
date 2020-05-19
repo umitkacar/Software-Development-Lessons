@@ -14,3 +14,6 @@ https://www.youtube.com/channel/UC4UJ26WkceqONNF5S26OiVw/playlists
 
 #### freeCodeCamp.org
 https://www.youtube.com/channel/UC8butISFwT-Wl7EV0hUK0BQ/videos
+
+#### MIT Deep Learning
+https://www.youtube.com/user/Zan560/playlists
