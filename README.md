@@ -17,3 +17,8 @@ https://www.youtube.com/channel/UC8butISFwT-Wl7EV0hUK0BQ/videos
 
 #### MIT Deep Learning
 https://www.youtube.com/user/Zan560/playlists
+
+#### Hacker Rank
+The market-leading technical skills assessment platform to identify and hire developers with the right skills.
+https://www.hackerrank.com
+
