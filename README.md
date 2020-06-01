@@ -22,3 +22,6 @@ https://www.youtube.com/user/Zan560/playlists
 The market-leading technical skills assessment platform to identify and hire developers with the right skills.
 https://www.hackerrank.com
 
+#### Pytorch Academia
+https://fleuret.org/ee559/
+
