@@ -22,6 +22,6 @@ https://www.youtube.com/user/Zan560/playlists
 The market-leading technical skills assessment platform to identify and hire developers with the right skills.
 https://www.hackerrank.com
 
-#### Pytorch Academia
+#### EPFL EE-559 – Deep Learning (Pytorch)
 https://fleuret.org/ee559/
 
