@@ -1,6 +1,6 @@
 ## FREE LESSONS
 
-# My-Software-Development-Lessons
+# Software-Development-Lessons
 Software Development Lessons
 
 #### Corey Schafer (Pandas)
