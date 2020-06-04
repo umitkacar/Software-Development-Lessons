@@ -25,3 +25,6 @@ https://www.hackerrank.com
 #### EPFL EE-559 – Deep Learning (Pytorch)
 https://fleuret.org/ee559/
 
+#### Machine Learning DEV
+https://dev.to/t/machinelearning
+
