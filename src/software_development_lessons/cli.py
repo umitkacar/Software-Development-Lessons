@@ -31,12 +31,8 @@ def add_resource(
     title: str = typer.Option(..., "--title", "-t", help="Resource title"),
     url: str = typer.Option(..., "--url", "-u", help="Resource URL"),
     category: str = typer.Option(..., "--category", "-c", help="Resource category"),
-    difficulty: str = typer.Option(
-        "beginner", "--difficulty", "-d", help="Difficulty level"
-    ),
-    description: str = typer.Option(
-        "", "--description", "-desc", help="Resource description"
-    ),
+    difficulty: str = typer.Option("beginner", "--difficulty", "-d", help="Difficulty level"),
+    description: str = typer.Option("", "--description", "-desc", help="Resource description"),
 ) -> None:
     """Add a new learning resource."""
     try:

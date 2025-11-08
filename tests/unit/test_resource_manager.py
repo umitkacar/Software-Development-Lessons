@@ -1,7 +1,8 @@
 """Unit tests for ResourceManager."""
 
-import pytest
 from pathlib import Path
+
+import pytest
 
 from software_development_lessons.core import ResourceManager
 from software_development_lessons.core.resource_manager import (

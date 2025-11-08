@@ -1,7 +1,8 @@
 """Integration tests for the full learning workflow."""
 
-import pytest
 from pathlib import Path
+
+import pytest
 
 from software_development_lessons.core import LearningTracker, ResourceManager
 from software_development_lessons.core.resource_manager import (
@@ -49,7 +50,7 @@ class TestFullLearningWorkflow:
         session1.complete(notes="Completed intro module")
 
         # Step 6: Continue learning in another session
-        session2 = learning_tracker.start_learning(selected_resource.url)
+        _session2 = learning_tracker.start_learning(selected_resource.url)
         learning_tracker.update_progress(selected_resource.url, 100)
 
         # Step 7: Verify completion
@@ -108,9 +109,7 @@ class TestFullLearningWorkflow:
         assert completed[0].resource_url == resources[0].url
         assert in_progress[0].resource_url == resources[1].url
 
-    def test_resource_filtering_and_selection(
-        self, resource_manager: ResourceManager
-    ) -> None:
+    def test_resource_filtering_and_selection(self, resource_manager: ResourceManager) -> None:
         """Test filtering resources by multiple criteria."""
         # Add diverse resources
         resources = [

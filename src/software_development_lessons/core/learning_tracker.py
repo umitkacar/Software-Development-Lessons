@@ -1,7 +1,7 @@
 """Learning Progress Tracker for monitoring educational journey."""
 
-from datetime import datetime, timedelta
 from dataclasses import dataclass, field
+from datetime import datetime, timedelta
 from enum import Enum
 from typing import Any
 
@@ -199,9 +199,7 @@ class LearningTracker:
         Returns:
             List of completed learning progress records.
         """
-        return [
-            p for p in self._progress.values() if p.status == ProgressStatus.COMPLETED
-        ]
+        return [p for p in self._progress.values() if p.status == ProgressStatus.COMPLETED]
 
     def get_in_progress_resources(self) -> list[LearningProgress]:
         """Get all in-progress resources.
@@ -209,9 +207,7 @@ class LearningTracker:
         Returns:
             List of in-progress learning progress records.
         """
-        return [
-            p for p in self._progress.values() if p.status == ProgressStatus.IN_PROGRESS
-        ]
+        return [p for p in self._progress.values() if p.status == ProgressStatus.IN_PROGRESS]
 
     def get_total_time_spent(self) -> timedelta:
         """Calculate total time spent learning across all resources.
