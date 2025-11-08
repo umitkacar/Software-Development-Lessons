@@ -127,3 +127,14 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Ruff
+.ruff_cache/
+
+# Hatch
+.hatch/
+
+# GitHub Actions workflows - excluded due to GitHub App permissions
+# These files are ready in .github/workflows/ but must be added manually
+# See WORKFLOWS_SETUP.md for instructions
+.github/workflows/
