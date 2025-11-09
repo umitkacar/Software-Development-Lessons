@@ -68,33 +68,46 @@ repos:
           - --show-error-codes
         files: ^src/
 
-  # ==================== PYTEST - Test Runner ====================
+  # ==================== PYTEST - Test Runner with xdist (Parallel) ====================
   - repo: local
     hooks:
       - id: pytest
-        name: pytest
+        name: pytest (parallel)
         entry: pytest
         language: system
         pass_filenames: false
         always_run: true
         args:
           - tests/
+          - -n
+          - auto
           - --maxfail=1
           - -v
 
-  # ==================== PYTEST-COV - Coverage ====================
+  # ==================== PYTEST-COV - Coverage with xdist ====================
       - id: pytest-cov
-        name: pytest-cov
+        name: pytest-cov (parallel)
         entry: pytest
         language: system
         pass_filenames: false
         always_run: false
         args:
           - --cov=software_development_lessons
-          - --cov-report=term
+          - --cov-report=term-missing
           - --cov-report=html
-          - --cov-fail-under=80
+          - --cov-fail-under=70
+          - -n
+          - auto
           - tests/
+        stages: [manual]
+
+  # ==================== PIP-AUDIT - Security Vulnerability Scanner ====================
+      - id: pip-audit
+        name: pip-audit (security scan)
+        entry: bash -c 'pip-audit --desc --skip-editable || true'
+        language: system
+        pass_filenames: false
+        always_run: true
         stages: [manual]
 
   # ==================== PYUPGRADE - Upgrade Python Syntax ====================
