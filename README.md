@@ -555,6 +555,130 @@ git pull origin main
 
 ---
 
+## 🛠️ Development & Testing
+
+This repository includes a **production-ready Python package** with modern development tools!
+
+### 📦 Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/umitkacar/Software-Development-Lessons.git
+cd Software-Development-Lessons
+
+# Install with development dependencies
+pip install -e ".[dev]"
+
+# Set up pre-commit hooks
+pre-commit install
+```
+
+### 🧪 Testing
+
+```bash
+# Run all tests (parallel execution with 16 workers)
+pytest -n auto tests/
+
+# Run with coverage report
+pytest --cov=software_development_lessons --cov-report=term-missing -n auto tests/
+
+# Run specific test categories
+pytest -m unit tests/          # Unit tests only
+pytest -m integration tests/   # Integration tests only
+
+# Run sequential tests (no parallel)
+pytest tests/
+```
+
+### 🎨 Code Quality
+
+```bash
+# Lint code with Ruff (super fast!)
+ruff check src/ tests/
+
+# Auto-fix issues
+ruff check --fix src/ tests/
+
+# Format code with Black
+black src/ tests/
+
+# Type check with Mypy
+mypy src/software_development_lessons
+
+# Run all quality checks
+ruff check src/ tests/ && black --check src/ tests/ && mypy src/
+```
+
+### 🔒 Security Scanning
+
+```bash
+# Scan for vulnerabilities
+pip-audit --desc
+
+# Scan with auto-fix suggestions
+pip-audit --desc --fix
+```
+
+### 🚀 Using Hatch Scripts
+
+```bash
+# Quick test
+hatch run test
+
+# Test with coverage
+hatch run test-cov
+
+# Lint code
+hatch run lint
+
+# Auto-fix and format
+hatch run fix
+
+# All quality checks
+hatch run check
+
+# Security audit
+hatch run security-audit
+```
+
+### 📊 Project Statistics
+
+- **Test Coverage**: 71.32% overall
+  - ResourceManager: 100%
+  - LearningTracker: 98.94%
+  - Utils: 92.59%
+- **Tests**: 47 tests, 100% passing
+- **Test Speed**: 2.44s (parallel) vs 8-10s (sequential)
+- **Code Quality**: 0 Ruff errors, 0 Mypy errors
+- **Security**: 1 vulnerability (down from 7, 86% reduction)
+
+### 📚 Documentation Files
+
+- **[LESSONS-LEARNED.md](LESSONS-LEARNED.md)**: Technical insights and best practices
+- **[CHANGELOG.md](CHANGELOG.md)**: Detailed version history
+- **[CONTRIBUTING.md](CONTRIBUTING.md)**: Contribution guidelines
+- **[WORKFLOWS_SETUP.md](WORKFLOWS_SETUP.md)**: GitHub Actions setup
+
+### 🔧 Pre-commit Hooks
+
+This repository uses **15+ pre-commit hooks** for automatic code quality:
+
+- ✅ File safety checks (large files, private keys, merge conflicts)
+- ✅ Ruff linting and formatting
+- ✅ Black code formatting
+- ✅ Mypy type checking
+- ✅ Pytest test execution
+- ✅ Security scanning with Bandit
+- ✅ Spelling checks with Codespell
+- ✅ YAML/Markdown formatting
+
+Run manually:
+```bash
+pre-commit run --all-files
+```
+
+---
+
 ## 📈 Repository Stats
 
 <div align="center">

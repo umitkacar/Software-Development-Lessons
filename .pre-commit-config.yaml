@@ -1,0 +1,195 @@
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+
+default_language_version:
+  python: python3.10
+
+repos:
+  # ==================== PRE-COMMIT HOOKS ====================
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0
+    hooks:
+      # File checks
+      - id: check-added-large-files
+        args: ['--maxkb=1000']
+      - id: check-case-conflict
+      - id: check-executables-have-shebangs
+      - id: check-merge-conflict
+      - id: check-symlinks
+      - id: check-toml
+      - id: check-yaml
+        args: ['--unsafe']
+      - id: check-json
+      - id: detect-private-key
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+        args: ['--markdown-linebreak-ext=md']
+      - id: mixed-line-ending
+        args: ['--fix=lf']
+
+      # Python-specific
+      - id: check-ast
+      - id: check-builtin-literals
+      - id: check-docstring-first
+      - id: debug-statements
+      - id: name-tests-test
+        args: ['--pytest-test-first']
+      - id: requirements-txt-fixer
+
+  # ==================== RUFF - Super Fast Python Linter ====================
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.1.9
+    hooks:
+      # Run the linter
+      - id: ruff
+        args: ['--fix', '--exit-non-zero-on-fix']
+      # Run the formatter
+      - id: ruff-format
+
+  # ==================== BLACK - Code Formatter ====================
+  - repo: https://github.com/psf/black
+    rev: 23.12.1
+    hooks:
+      - id: black
+        language_version: python3.10
+        args: ['--line-length=100']
+
+  # ==================== MYPY - Type Checker ====================
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.8.0
+    hooks:
+      - id: mypy
+        additional_dependencies:
+          - types-requests
+          - types-setuptools
+        args:
+          - --strict
+          - --ignore-missing-imports
+          - --show-error-codes
+        files: ^src/
+
+  # ==================== PYTEST - Test Runner with xdist (Parallel) ====================
+  - repo: local
+    hooks:
+      - id: pytest
+        name: pytest (parallel)
+        entry: pytest
+        language: system
+        pass_filenames: false
+        always_run: true
+        args:
+          - tests/
+          - -n
+          - auto
+          - --maxfail=1
+          - -v
+
+  # ==================== PYTEST-COV - Coverage with xdist ====================
+      - id: pytest-cov
+        name: pytest-cov (parallel)
+        entry: pytest
+        language: system
+        pass_filenames: false
+        always_run: false
+        args:
+          - --cov=software_development_lessons
+          - --cov-report=term-missing
+          - --cov-report=html
+          - --cov-fail-under=70
+          - -n
+          - auto
+          - tests/
+        stages: [manual]
+
+  # ==================== PIP-AUDIT - Security Vulnerability Scanner ====================
+      - id: pip-audit
+        name: pip-audit (security scan)
+        entry: bash -c 'pip-audit --desc --skip-editable || true'
+        language: system
+        pass_filenames: false
+        always_run: true
+        stages: [manual]
+
+  # ==================== PYUPGRADE - Upgrade Python Syntax ====================
+  - repo: https://github.com/asottile/pyupgrade
+    rev: v3.15.0
+    hooks:
+      - id: pyupgrade
+        args: ['--py310-plus']
+
+  # ==================== ISORT - Import Sorting (via ruff) ====================
+  # Ruff includes isort functionality, but you can use standalone if needed
+  # - repo: https://github.com/pycqa/isort
+  #   rev: 5.13.2
+  #   hooks:
+  #     - id: isort
+  #       args: ['--profile', 'black', '--line-length', '100']
+
+  # ==================== BANDIT - Security Linter ====================
+  - repo: https://github.com/PyCQA/bandit
+    rev: 1.7.6
+    hooks:
+      - id: bandit
+        args: ['-c', 'pyproject.toml', '--skip', 'B101']
+        additional_dependencies: ['bandit[toml]']
+
+  # ==================== COMMITIZEN - Conventional Commits ====================
+  - repo: https://github.com/commitizen-tools/commitizen
+    rev: v3.13.0
+    hooks:
+      - id: commitizen
+        stages: [commit-msg]
+
+  # ==================== CODESPELL - Spell Checker ====================
+  - repo: https://github.com/codespell-project/codespell
+    rev: v2.2.6
+    hooks:
+      - id: codespell
+        args: ['--ignore-words-list', 'crate,nd,sav,aci,hass,fo']
+        exclude: |
+          (?x)^(
+              .*\.json|
+              .*\.lock|
+              .*\.pyc
+          )$
+
+  # ==================== PRETTIER - Multi-language Formatter ====================
+  - repo: https://github.com/pre-commit/mirrors-prettier
+    rev: v4.0.0-alpha.8
+    hooks:
+      - id: prettier
+        types_or: [yaml, markdown, json]
+        exclude: |
+          (?x)^(
+              \.vscode/.*|
+              \.idea/.*
+          )$
+
+  # ==================== YAMLLINT - YAML Linter ====================
+  - repo: https://github.com/adrienverge/yamllint
+    rev: v1.33.0
+    hooks:
+      - id: yamllint
+        args: ['-d', '{extends: default, rules: {line-length: {max: 120}}}']
+
+  # ==================== MARKDOWN LINT ====================
+  - repo: https://github.com/igorshubovych/markdownlint-cli
+    rev: v0.38.0
+    hooks:
+      - id: markdownlint
+        args: ['--fix']
+
+# ==================== CI Configuration ====================
+ci:
+  autofix_commit_msg: |
+    [pre-commit.ci] auto fixes from pre-commit hooks
+
+    for more information, see https://pre-commit.ci
+  autofix_prs: true
+  autoupdate_branch: ''
+  autoupdate_commit_msg: '[pre-commit.ci] pre-commit autoupdate'
+  autoupdate_schedule: weekly
+  skip:
+    - pytest
+    - pytest-cov
+  submodules: false

@@ -1,0 +1,35 @@
+# Coverage configuration
+# https://coverage.readthedocs.io/en/latest/config.html
+
+[run]
+branch = True
+source = software_development_lessons
+omit =
+    tests/*
+    **/__init__.py
+    **/__main__.py
+    **/conftest.py
+
+[report]
+precision = 2
+show_missing = True
+skip_covered = False
+exclude_lines =
+    pragma: no cover
+    def __repr__
+    if TYPE_CHECKING:
+    raise AssertionError
+    raise NotImplementedError
+    if __name__ == .__main__.:
+    if sys.version_info
+    if typing.TYPE_CHECKING:
+    @abstractmethod
+    @overload
+    class .*\bProtocol\):
+    except ImportError:
+
+[html]
+directory = htmlcov
+
+[xml]
+output = coverage.xml
